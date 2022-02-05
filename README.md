@@ -1,5 +1,7 @@
 # cypress-fw
 
+[![CodeQL](https://github.com/kshyk/cypress-fw/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/kshyk/cypress-fw/actions/workflows/codeql-analysis.yml)
+
 [![forthebadge](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
