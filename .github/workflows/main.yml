@@ -79,7 +79,8 @@ jobs:
           brew update
           brew upgrade
           brew autoremove
-          brew cask install microsoft-edge-beta
+          brew search microsoft-edge
+          brew reinstall --cask microsoft-edge-beta
 
       - name: Install dependencies
         run: |
