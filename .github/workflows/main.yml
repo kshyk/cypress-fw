@@ -33,12 +33,13 @@ jobs:
       - name: Install Edge browser
         if: matrix.browser == 'edge'
         run: |
-          curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          curl -L https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
           sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
           sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-beta.list'
           sudo rm microsoft.gpg
-          sudo apt update -y
-          sudo apt install -y microsoft-edge-beta
+          sudo apt-get -qq update
+          sudo apt-get -qq install microsoft-edge-beta
+          sudo apt-get -yq autoremove
 
       - name: Install dependencies
         run: |
@@ -75,7 +76,10 @@ jobs:
         if: matrix.browser == 'edge'
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install microsoft-edge-beta
+          brew update
+          brew upgrade
+          brew autoremove
+          brew cask install microsoft-edge-beta
 
       - name: Install dependencies
         run: |
