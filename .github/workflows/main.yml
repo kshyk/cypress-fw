@@ -76,11 +76,8 @@ jobs:
         if: matrix.browser == 'edge'
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew update
-          brew upgrade
+          brew install --cask homebrew/cask-versions/microsoft-edge-beta
           brew autoremove
-          brew search microsoft-edge
-          brew reinstall --cask microsoft-edge-beta
 
       - name: Install dependencies
         run: |
