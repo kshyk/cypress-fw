@@ -31,7 +31,7 @@ jobs:
           cache: "npm"
 
       - name: Install Edge browser
-        if: ${{ matrix.browser }} == 'edge'
+        if: matrix.browser == 'edge'
         run: |
           curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
           sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -41,7 +41,9 @@ jobs:
           sudo apt install -y microsoft-edge-beta
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npx browserslist@latest --update-db
         env:
           DEBUG: pw:install
 
@@ -69,8 +71,16 @@ jobs:
           node-version: "16"
           cache: "npm"
 
+      - name: Install Edge browser
+        if: matrix.browser == 'edge'
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew install --cask microsoft-edge
+
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npx browserslist@latest --update-db
         env:
           DEBUG: pw:install
 
