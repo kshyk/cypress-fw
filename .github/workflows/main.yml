@@ -1,0 +1,122 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test_linux:
+    name: ${{ matrix.os }} (${{ matrix.browser }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04]
+        browser: [chrome, chromium, edge, electron, firefox]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout ${{ github.repository }} repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "npm"
+
+      - name: Install Edge browser
+        if: matrix.browser == 'edge'
+        run: |
+          curl -L https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-beta.list'
+          sudo rm microsoft.gpg
+          sudo apt-get -qq update
+          sudo apt-get -qq install microsoft-edge-beta
+          sudo apt-get -yq autoremove
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npx browserslist@latest --update-db
+        env:
+          DEBUG: pw:install
+
+      - name: Run Cypress tests
+        run: npm run cy:run -- --browser ${{ matrix.browser }}
+
+  test_macos:
+    name: ${{ matrix.os }} (${{ matrix.browser }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-10.15, macos-11]
+        browser: [chrome, edge, electron, firefox]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout ${{ github.repository }} repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "npm"
+
+      - name: Install Edge browser
+        if: matrix.browser == 'edge'
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew install --cask homebrew/cask-versions/microsoft-edge-beta
+          brew autoremove
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npx browserslist@latest --update-db
+        env:
+          DEBUG: pw:install
+
+      - name: Run Cypress tests
+        run: npm run cy:run -- --browser ${{ matrix.browser }}
+
+  test_windows:
+    name: ${{ matrix.os }} (${{ matrix.browser }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+        browser: [chrome, edge, electron, firefox]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout ${{ github.repository }} repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npx browserslist@latest --update-db
+        env:
+          DEBUG: pw:install
+
+      - name: Run Cypress tests
+        run: npm run cy:run -- --browser ${{ matrix.browser }}
+        shell: bash
