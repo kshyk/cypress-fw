@@ -1,15 +1,17 @@
-name: E2E Tests
+name: Regression
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: "0 5 * * 6"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  test_linux:
+  linux_os:
     name: ${{ matrix.os }} (${{ matrix.browser }})
     strategy:
       fail-fast: false
@@ -51,7 +53,7 @@ jobs:
       - name: Run Cypress tests
         run: npm run cy:run -- --browser ${{ matrix.browser }}
 
-  test_macos:
+  mac_os:
     name: ${{ matrix.os }} (${{ matrix.browser }})
     strategy:
       fail-fast: false
@@ -89,7 +91,7 @@ jobs:
       - name: Run Cypress tests
         run: npm run cy:run -- --browser ${{ matrix.browser }}
 
-  test_windows:
+  windows_os:
     name: ${{ matrix.os }} (${{ matrix.browser }})
     strategy:
       fail-fast: false
