@@ -1,5 +1,7 @@
+/// <reference types="cypress" />
+
 import './commands'
 
 Cypress.on('uncaught:exception', (error, runnable) => {
-    return false
-})
+    return false;
+});
