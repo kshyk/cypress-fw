@@ -19,6 +19,7 @@ jobs:
         os: [ubuntu-20.04]
         browser: [chrome, chromium, edge, electron, firefox]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
 
     steps:
       - name: Checkout ${{ github.repository }} repository
@@ -61,6 +62,7 @@ jobs:
         os: [macos-10.15, macos-11]
         browser: [chrome, edge, electron, firefox]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
 
     steps:
       - name: Checkout ${{ github.repository }} repository
@@ -99,6 +101,7 @@ jobs:
         os: [windows-latest]
         browser: [chrome, edge, electron, firefox]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
 
     steps:
       - name: Checkout ${{ github.repository }} repository
