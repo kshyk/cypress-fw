@@ -2,6 +2,6 @@ describe("Okruszek", () => {
     it("should donate after bread click", () => {
         cy.visit("http://www.okruszek.org.pl/");
         cy.get(".click-crumb").trigger('mouseover').click();
-        cy.get("section#thanks").should("be.visible");
+        cy.get("section#thanks", { timeout: 10000 }).should("be.visible");
     });
 });
