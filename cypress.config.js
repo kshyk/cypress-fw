@@ -3,7 +3,6 @@ const { defineConfig } = require('cypress');
 module.exports = defineConfig({
   video: false,
   chromeWebSecurity: false,
-  experimentalStudio: true,
   projectId: 'xd2d1c',
   retries: 2,
   e2e: {
