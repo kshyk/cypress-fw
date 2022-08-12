@@ -10,7 +10,7 @@ describe("Cookie Policy", () => {
     });
 
     it("should disappear when dismissed by OK button", () => {
-        cy.get("button[id=catapultCookie]").click();
+        cy.get("button[id=catapultCookie]").trigger('mouseover').click();
         cy.get("div#catapult-cookie-bar").should("not.be.visible");
     });
 });
