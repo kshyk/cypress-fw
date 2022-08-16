@@ -16,11 +16,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, ubuntu-22.04]
+        os: [ubuntu-20.04]
         browser: [chrome, chromium, edge, electron, firefox]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
-    if: ${{ !(matrix.browser == 'firefox' && matrix.os == 'ubuntu-22.04') }}
 
     steps:
       - name: Checkout ${{ github.repository }} repository
@@ -44,13 +43,6 @@ jobs:
           sudo apt-get -qq update
           sudo apt-get -qq install -o=Dpkg::Use-Pty=0 microsoft-edge-beta
           sudo apt-get -yq autoremove
-
-      - name: Install Firefox browser
-        if: matrix.browser == 'firefox' && matrix.os == 'ubuntu-22.04'
-        run: |
-          sudo add-apt-repository ppa:ubuntu-mozilla-security/ppa
-          sudo apt-get -qq update
-          sudo apt-get -qq install -o=Dpkg::Use-Pty=0 firefox
 
       - name: Install dependencies
         run: |
