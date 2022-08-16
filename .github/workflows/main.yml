@@ -20,6 +20,7 @@ jobs:
         browser: [chrome, chromium, edge, electron, firefox]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
+    if: ! (matrix.browser == 'firefox' && matrix.os == 'ubuntu-22.04')
 
     steps:
       - name: Checkout ${{ github.repository }} repository
