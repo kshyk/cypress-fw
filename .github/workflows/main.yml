@@ -41,14 +41,15 @@ jobs:
           sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-beta.list'
           sudo rm microsoft.gpg
           sudo apt-get -qq update
-          sudo apt-get -qq install microsoft-edge-beta
+          sudo apt-get -qq install -o=Dpkg::Use-Pty=0 microsoft-edge-beta
           sudo apt-get -yq autoremove
 
       - name: Install Firefox browser
         if: matrix.browser == 'firefox' && matrix.os == 'ubuntu-22.04'
         run: |
-          wget -O ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
-          sudo tar xjf ~/Firefox.tar.bz2 -C /opt/
+          sudo add-apt-repository ppa:ubuntu-mozilla-security/ppa
+          sudo apt-get -qq update
+          sudo apt-get -qq install -o=Dpkg::Use-Pty=0 firefox
 
       - name: Install dependencies
         run: |
