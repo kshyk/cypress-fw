@@ -58,7 +58,7 @@ jobs:
             Pin-Priority: -1
             ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
           sudo snap remove firefox
-          echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+          echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:jammy";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
           sudo apt-get -qq install -o=Dpkg::Use-Pty=0 firefox
 
       - name: Install dependencies
