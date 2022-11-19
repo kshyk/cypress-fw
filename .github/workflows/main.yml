@@ -44,6 +44,18 @@ jobs:
           sudo apt-get -qq install -o=Dpkg::Use-Pty=0 microsoft-edge-beta
           sudo apt-get -yq autoremove
 
+      - name: Install Firefox browser
+        if: matrix.browser == 'firefox'
+        run: |
+          sudo snap remove firefox
+          sudo add-apt-repository ppa:mozillateam/ppa
+          echo '
+            Package: *
+            Pin: release o=LP-PPA-mozillateam
+            Pin-Priority: 1001
+            ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+          sudo apt install firefox
+
       - name: Install dependencies
         run: |
           npm ci
