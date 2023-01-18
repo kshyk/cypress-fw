@@ -22,7 +22,6 @@ module.exports = defineConfig({
       })
     },
     support: 'cypress/support/e2e.js',
-    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
-    experimentalSessionAndOrigin: true
+    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}'
   }
 });
