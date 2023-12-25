@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install Edge browser
         if: matrix.browser == 'edge'
@@ -52,13 +52,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci
+          yarn install --frozen-lockfile
           npx browserslist@latest --update-db
         env:
           DEBUG: pw:install
 
       - name: Run Cypress tests
-        run: npm run cy:run -- --browser ${{ matrix.browser }}
+        run: yarn cy:run --headless -b ${{ matrix.browser }}
 
   mac_os:
     name: ${{ matrix.os }} (${{ matrix.browser }})
@@ -80,7 +80,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install Edge browser
         if: matrix.browser == 'edge'
@@ -91,13 +91,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci
+          yarn install --frozen-lockfile
           npx browserslist@latest --update-db
         env:
           DEBUG: pw:install
 
       - name: Run Cypress tests
-        run: npm run cy:run -- --browser ${{ matrix.browser }}
+        run: yarn cy:run --headless -b ${{ matrix.browser }}
 
   windows_os:
     name: ${{ matrix.os }} (${{ matrix.browser }})
@@ -119,15 +119,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install dependencies
         run: |
-          npm ci
+          yarn install --frozen-lockfile
           npx browserslist@latest --update-db
         env:
           DEBUG: pw:install
 
       - name: Run Cypress tests
-        run: npm run cy:run -- --browser ${{ matrix.browser }}
+        run: yarn cy:run --headless -b ${{ matrix.browser }}
         shell: bash

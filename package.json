@@ -1,10 +1,12 @@
 {
+  "author": "Jakub Turkiewicz <jj.turkiewicz@gmail.com> (https://kshyk.github.io/portfolio/)",
+  "license": "MIT",
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
   "devDependencies": {
-    "cypress": "^13.0.0",
-    "eslint-plugin-cypress": "^2.14.0"
+    "cypress": "^13.6.1",
+    "eslint-plugin-cypress": "^2.15.1"
   }
 }
