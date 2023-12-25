@@ -11,7 +11,7 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       on('before:browser:launch', (browser = {}, launchOptions) => {
-        if (browser.family === 'chromium' || browser.family === 'chrome') {
+        if (browser.name === 'chrome' || browser.family === 'chromium') {
           launchOptions.args.push('--disable-infobars')
           launchOptions.args.push('--disable-gpu')
           launchOptions.args.push('--disable-dev-shm-usage')
