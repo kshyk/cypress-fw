@@ -58,7 +58,7 @@ jobs:
           DEBUG: pw:install
 
       - name: Run Cypress tests
-        run: yarn cy:run -- --browser ${{ matrix.browser }}
+        run: yarn cy:run --headless -b ${{ matrix.browser }}
 
   mac_os:
     name: ${{ matrix.os }} (${{ matrix.browser }})
@@ -97,7 +97,7 @@ jobs:
           DEBUG: pw:install
 
       - name: Run Cypress tests
-        run: yarn cy:run -- --browser ${{ matrix.browser }}
+        run: yarn cy:run --headless -b ${{ matrix.browser }}
 
   windows_os:
     name: ${{ matrix.os }} (${{ matrix.browser }})
@@ -129,5 +129,5 @@ jobs:
           DEBUG: pw:install
 
       - name: Run Cypress tests
-        run: yarn cy:run -- --browser ${{ matrix.browser }}
+        run: yarn cy:run --headless -b ${{ matrix.browser }}
         shell: bash
