@@ -53,7 +53,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
-          npx browserslist@latest --update-db
+          npx update-browserslist-db@latest
         env:
           DEBUG: pw:install
 
@@ -92,7 +92,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
-          npx browserslist@latest --update-db
+          npx update-browserslist-db@latest
         env:
           DEBUG: pw:install
 
@@ -124,7 +124,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
-          npx browserslist@latest --update-db
+          npx update-browserslist-db@latest
         env:
           DEBUG: pw:install
 

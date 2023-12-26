@@ -1,3 +1,4 @@
 cypress/fixtures
 cypress/screenshots
 cypress/videos
+cypress/reports

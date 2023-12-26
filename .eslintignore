@@ -1,5 +1,5 @@
 node_modules
 test-results
-dist
+cypress/reports
 cypress/screenshots
 cypress/videos
