@@ -1,5 +1,3 @@
-import 'cypress-real-events';
-
 export {};
 
 declare global {
