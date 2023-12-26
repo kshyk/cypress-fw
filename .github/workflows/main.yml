@@ -51,9 +51,7 @@ jobs:
           sudo ln -svf /opt/firefox/firefox /usr/bin/
 
       - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile
-          npx update-browserslist-db@latest
+        run: yarn install --frozen-lockfile
         env:
           DEBUG: pw:install
 
@@ -90,9 +88,7 @@ jobs:
           brew autoremove
 
       - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile
-          npx update-browserslist-db@latest
+        run: yarn install --frozen-lockfile
         env:
           DEBUG: pw:install
 
@@ -122,9 +118,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile
-          npx update-browserslist-db@latest
+        run: yarn install --frozen-lockfile
         env:
           DEBUG: pw:install
 
