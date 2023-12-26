@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "../node_modules",
+    "types": ["cypress", "node", "mocha"],
+    "esModuleInterop": true,
+    "noEmit": true
+  },
+  "include": ["**/*.*"]
+}

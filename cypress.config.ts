@@ -1,7 +1,7 @@
-const { defineConfig } = require('cypress');
-const { unlinkSync } = require('fs');
+import { defineConfig } from 'cypress';
+import fs = require('fs');
 
-module.exports = defineConfig({
+export = defineConfig({
   video: false,
   projectId: 'xd2d1c',
   retries: {
@@ -10,7 +10,7 @@ module.exports = defineConfig({
   },
   e2e: {
     setupNodeEvents(on, config) {
-      on('before:browser:launch', (browser = {}, launchOptions) => {
+      on('before:browser:launch', (browser, launchOptions) => {
         if (browser.name === 'chrome' || browser.family === 'chromium') {
           launchOptions.args.push('--disable-infobars')
           launchOptions.args.push('--disable-gpu')
@@ -23,12 +23,12 @@ module.exports = defineConfig({
         if (results?.video) {
           const failures = results.tests.some((test) => test.attempts.some((attempt) => attempt.state === 'failed'));
           if (!failures) {
-            unlinkSync(results.video);
+            fs.unlinkSync(results.video);
           }
         }
       });
     },
-    support: 'cypress/support/e2e.js',
-    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}'
+    supportFile: 'cypress/support/e2e.ts',
+    specPattern: 'cypress/e2e/**/*.cy.[jt]s'
   }
 });
