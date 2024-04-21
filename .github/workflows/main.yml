@@ -84,18 +84,15 @@ jobs:
           node-version: 20
           cache: 'yarn'
 
-      - name: Install Edge browser
-        if: matrix.browser == 'edge'
+      - name: Install missing browsers
+        if: matrix.browser == 'edge' || matrix.browser == 'firefox'
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install --cask microsoft-edge
-          brew autoremove
-
-      - name: Install Firefox browser
-        if: matrix.browser == 'firefox'
-        run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install --cask firefox
+          if [[ ${{ matrix.browser }} == 'edge' ]]; then
+            brew install --cask microsoft-edge
+          elif [[ ${{ matrix.browser }} == 'firefox' ]]; then
+            brew install --cask firefox
+          fi
           brew autoremove
 
       - name: Install dependencies
