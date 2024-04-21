@@ -91,6 +91,13 @@ jobs:
           brew install --cask microsoft-edge
           brew autoremove
 
+      - name: Install Firefox browser
+        if: matrix.browser == 'firefox'
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew install --cask firefox
+          brew autoremove
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
         env:
