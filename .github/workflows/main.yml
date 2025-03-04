@@ -49,7 +49,7 @@ jobs:
         if: matrix.browser == 'firefox'
         run: |
           wget -qO ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
-          sudo tar xjf ~/Firefox.tar.bz2 -C /opt/
+          sudo tar xvf ~/Firefox.tar.bz2 -C /opt/
           sudo ln -svf /opt/firefox/firefox /usr/bin/
 
       - name: Install dependencies
