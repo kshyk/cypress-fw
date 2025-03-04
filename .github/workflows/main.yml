@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04]
+        os: [ubuntu-24.04]
         browser: [chrome, edge, firefox]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
@@ -31,7 +31,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'yarn'
 
       - name: Install Edge browser
@@ -48,8 +48,8 @@ jobs:
       - name: Install Firefox browser
         if: matrix.browser == 'firefox'
         run: |
-          wget -qO ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
-          sudo tar xjf ~/Firefox.tar.bz2 -C /opt/
+          wget -qO ~/Firefox.tar.xz "https://download.mozilla.org/?product=firefox-latest&os=linux64"
+          sudo tar xjf ~/Firefox.tar.xz -C /opt/
           sudo ln -svf /opt/firefox/firefox /usr/bin/
 
       - name: Install dependencies
@@ -65,7 +65,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13]
+        os: [macos-15]
         browser: [chrome, edge, firefox]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
@@ -79,7 +79,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'yarn'
 
       - name: Install Edge browser
@@ -116,7 +116,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'yarn'
 
       - name: Install dependencies
