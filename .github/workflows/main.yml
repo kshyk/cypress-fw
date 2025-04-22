@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04]
+        os: [ubuntu-24.04]
         browser: [chrome, edge, firefox]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
@@ -65,7 +65,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13]
+        os: [macos-15]
         browser: [chrome, edge, firefox]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
@@ -89,6 +89,15 @@ jobs:
           brew install --cask microsoft-edge
           brew autoremove && brew cleanup
 
+      - name: Install Firefox browser
+        if: matrix.browser == 'firefox'
+        run: |
+          curl -Lo ~/Firefox.dmg "https://download.mozilla.org/?product=firefox-latest&os=osx"
+          hdiutil attach ~/Firefox.dmg -nobrowse -quiet
+          cp -R /Volumes/Firefox/Firefox.app /Applications/
+          hdiutil detach /Volumes/Firefox -quiet
+          rm -Rf ~/Firefox.dmg
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
         env:
@@ -102,7 +111,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2022]
+        os: [windows-2025]
         browser: [chrome, edge, firefox]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
