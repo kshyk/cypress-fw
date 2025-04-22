@@ -89,6 +89,15 @@ jobs:
           brew install --cask microsoft-edge
           brew autoremove && brew cleanup
 
+      - name: Install Firefox browser
+        if: matrix.browser == 'firefox'
+        run: |
+          curl -Lo ~/Firefox.dmg "https://download.mozilla.org/?product=firefox-latest&os=osx"
+          hdiutil attach ~/Firefox.dmg -nobrowse -quiet
+          cp -R /Volumes/Firefox/Firefox.app /Applications/
+          hdiutil detach /Volumes/Firefox -quiet
+          rm -Rf ~/Firefox.dmg
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
         env:
