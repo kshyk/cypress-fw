@@ -32,7 +32,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'yarn'
 
       - name: Install Edge browser
         if: matrix.browser == 'edge'
@@ -53,7 +52,7 @@ jobs:
           sudo ln -svf /opt/firefox/firefox /usr/bin/
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
         env:
           DEBUG: pw:install
 
@@ -80,7 +79,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'yarn'
 
       - name: Install Edge browser
         if: matrix.browser == 'edge'
@@ -99,7 +97,7 @@ jobs:
           rm -Rf ~/Firefox.dmg
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
         env:
           DEBUG: pw:install
 
@@ -126,10 +124,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'yarn'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
         env:
           DEBUG: pw:install
 
