@@ -38,5 +38,5 @@
   "dependencies": {
     "update-browserslist-db": "^1.0.13"
   },
-  "packageManager": "yarn@4.9.4"
+  "packageManager": "yarn@4.10.0"
 }
