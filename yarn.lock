@@ -4430,8 +4430,8 @@ __metadata:
   linkType: hard
 
 "update-browserslist-db@npm:^1.0.13, update-browserslist-db@npm:^1.1.4":
-  version: 1.2.0
-  resolution: "update-browserslist-db@npm:1.2.0"
+  version: 1.2.2
+  resolution: "update-browserslist-db@npm:1.2.2"
   dependencies:
     escalade: "npm:^3.2.0"
     picocolors: "npm:^1.1.1"
@@ -4439,7 +4439,7 @@ __metadata:
     browserslist: ">= 4.21.0"
   bin:
     update-browserslist-db: cli.js
-  checksum: 10c0/bfb0893568a65b0573a6459772434f255a28a569a36ce52d5fc45ef2bd17ee5b6ecf6ac6e5e349721e4c86a3f0a36e74812aa7c31f21fd654f3ad6998712ecba
+  checksum: 10c0/39c3ea08b397ffc8dc3a1c517f5c6ed5cc4179b5e185383dab9bf745879623c12062a2e6bf4f9427cc59389c7bfa0010e86858b923c1e349e32fdddd9b043bb2
   languageName: node
   linkType: hard
 
